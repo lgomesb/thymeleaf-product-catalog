@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8"/></head>
+<body>
+	    <section class="layout-content" layout:fragment="corpo">
+	
+	        <nav class="navbar navbar-expand-md bg-light">
+	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item active">
+	                        <i class="oi oi-caret-right"></i>
+	                        <span>Create Category</span>
+	                    </li>
+	                </ul>
+	            </div>
+	            <a class="btn btn-primary btn-md" href="/category/list" role="button">
+	                <span class="oi oi-spreadsheet" title="Create" aria-hidden="true"></span>
+	                <span>Cateogories List</span>
+	            </a>
+	        </nav>
+	
+	        <div class="container" id="create">
+	        	<div th:replace="fragments/alert"></div>
+	            <form th:action="${category.id == null} ? @{/category/salve} : @{/category/edit}" 
+	                  th:object="${category}" method="POST">
+	                <div class="form-row">
+	                    <div class="form-group col-md-6">
+	                        <label for="name">Category</label>
+	                        <input type="text" class="form-control" id="name"
+	                               placeholder="Name" autofocus="autofocus" th:field="*{name}"/>
+	                    </div>
+	                </div>
+	                <input type="hidden" id="id" th:field="*{id}"/>
+	                <button type="submit" class="btn btn-primary btn-sm">Salve</button>
+	            </form>
+	        </div>			
+	    </section>
+</body>
+</html>		

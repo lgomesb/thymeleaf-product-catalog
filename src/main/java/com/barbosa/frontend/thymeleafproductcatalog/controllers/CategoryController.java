@@ -2,6 +2,7 @@ package com.barbosa.frontend.thymeleafproductcatalog.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,12 @@ public class CategoryController {
 		service.create(category);
 		attr.addFlashAttribute("success", "Category created with successfully.");
 		return "redirect:/category/insert";
+	}
+
+	@GetMapping("/list")
+	public String list(ModelMap model) {
+		model.addAttribute("categories", service.listAll()); 
+		return "/category/list";
 	}
 
 }

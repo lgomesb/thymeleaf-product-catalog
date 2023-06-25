@@ -1,5 +1,5 @@
 package com.barbosa.frontend.thymeleafproductcatalog.model.records;
 
-public class CategoryRecord {
+public record CategoryRecord(String id, String name) {
 
 }

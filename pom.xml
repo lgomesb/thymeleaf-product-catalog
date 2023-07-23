@@ -40,9 +40,10 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>1.18.28</version>
+			<!-- <optional>true</optional> -->
 		</dependency>
-
+		
 		<!-- WebJars -->
 		<dependency>
 			<groupId>org.webjars</groupId>

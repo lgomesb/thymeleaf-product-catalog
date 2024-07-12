@@ -1,6 +1,7 @@
 package com.barbosa.frontend.thymeleafproductcatalog.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.barbosa.frontend.thymeleafproductcatalog.model.Category;
+import com.barbosa.frontend.thymeleafproductcatalog.services.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,18 +9,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.barbosa.frontend.thymeleafproductcatalog.model.Category;
-import com.barbosa.frontend.thymeleafproductcatalog.services.CategoryService;
-
 
 @Controller
 @RequestMapping({ "/", "/category" })
 public class CategoryController {
 
-	@Autowired
-	private CategoryService service;
-    
-	@GetMapping("/insert")
+	private final CategoryService service;
+
+    public CategoryController(CategoryService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/insert")
 	public String create(Category category) {
 		return "/category/insert";
 	}

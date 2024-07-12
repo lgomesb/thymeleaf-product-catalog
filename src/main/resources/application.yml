@@ -4,3 +4,10 @@ server:
 spring:
     thymeleaf:
         prefix: classpath:/templates/
+
+endpoint:
+    inventory:
+        api:
+            category: http://localhost:8082/product-mgmt/category
+            product: http://localhost:8082/product-mgmt/product
+

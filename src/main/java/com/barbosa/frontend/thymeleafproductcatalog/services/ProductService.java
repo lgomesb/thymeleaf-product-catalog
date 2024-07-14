@@ -67,7 +67,7 @@ public class ProductService {
         return products.stream().toList();
     }
 
-    public Page<Product> getListByPagination(int page) {
+    public Page<Product> getListByPagination(int page, String dir) {
         Page<Product> products;
         int size = 10;
         int init = (page > 0) ? page - 1 : page;
@@ -75,7 +75,8 @@ public class ProductService {
         try {
             UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(productEndpoint)
                     .queryParam("page", init)
-                    .queryParam("linesPerPage", size);
+                    .queryParam("linesPerPage", size)
+                    .queryParam("direction", dir);
 
             ResponseEntity<CustomPageImpl<Product>> response = rest.exchange(uriBuilder.toUriString(),
                     HttpMethod.GET,

@@ -41,12 +41,16 @@ public class ProductController {
 	}
 
 	@GetMapping("/list")
-	public String list(ModelMap model, @RequestParam("page") Optional<Integer> page) {
-		Page<Product> productPage = productService.getListByPagination(page.orElse(1));
+	public String list(ModelMap model,
+					   @RequestParam("page") Optional<Integer> page,
+					   @RequestParam("dir") Optional<String> dir) {
+		String direction = dir.orElse("asc");
+		Page<Product> productPage = productService.getListByPagination(page.orElse(1), direction);
 		model.addAttribute("products", productPage.getContent());
 		model.addAttribute("prodPage", productPage.getNumber()+1);
 		int totalPages = productPage.getTotalPages();
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("dir", direction);
 
 		if(totalPages > 0) {
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().toList();
